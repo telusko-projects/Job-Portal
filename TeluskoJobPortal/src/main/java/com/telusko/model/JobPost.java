@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "jobportal")
+@Document(collection = "jobpost")
 public class JobPost {
 
 	@Id
@@ -30,7 +30,7 @@ public class JobPost {
 	
 	
 	
-	@NotNull( message = "Experience can't be greater than 2 digits")
+	@NotNull( message = "minimum experience for this role is 1 years and maximum ")
 	@Min(1)
 	@Max(15)
 	private Integer reqExperience;
