@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document()
+@Document(collection = "JobPost")
 public class JobPost {
 
 	
