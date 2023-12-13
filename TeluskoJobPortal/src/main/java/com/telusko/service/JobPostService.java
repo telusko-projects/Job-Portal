@@ -44,7 +44,7 @@ public class JobPostService {
 		if (optional != null) {
 			return optional.get();
 		} else {
-			throw new JobPostIdNotFoundException("Oops! jobPost not found with given id");
+			throw new JobPostIdNotFoundException("Oops! jobPost not found with given id: "+postId);
 		}
 	}
 	
@@ -64,9 +64,9 @@ public class JobPostService {
 
 		if (optional != null) {
 			jobPostRepo.deleteById(postId);
-			return "job post deleted with given id";
+			return "job post deleted with given id"+postId;
 		} else {
-			throw new JobPostIdNotFoundException("Oops! jobPost not found with given id");
+			throw new JobPostIdNotFoundException("Oops! jobPost not found with given id: "+postId);
 		}
 	}
 
@@ -96,7 +96,7 @@ public class JobPostService {
 			return jobPostRepo.save(existingJobPost);
 
 		} else {
-			throw new JobPostIdNotFoundException("Oops! jobPost not found with given id");
+			throw new JobPostIdNotFoundException("Oops! jobPost not found with given id: "+postId);
 		}
 	}
 
