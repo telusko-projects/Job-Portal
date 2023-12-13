@@ -1,5 +1,9 @@
 package com.telusko.repo;
 
-public interface JobPostRepo {
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+import com.telusko.model.JobPost;
+
+public interface JobPostRepo extends MongoRepository<JobPost, Integer> {
 
 }
