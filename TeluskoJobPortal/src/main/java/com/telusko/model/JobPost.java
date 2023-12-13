@@ -3,7 +3,10 @@ package com.telusko.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,9 +29,11 @@ public class JobPost {
 	private String postDesc;
 	
 	
-	@NotEmpty
-	@Size(min = 1, max = 2, message = "Experience can't be greater than 2 digits")
-	private int reqExperience;
+	
+	@NotNull( message = "Experience can't be greater than 2 digits")
+	@Min(1)
+	@Max(15)
+	private Integer reqExperience;
 	
 	
 	@NotEmpty(message = "please provide at least one tech stack")

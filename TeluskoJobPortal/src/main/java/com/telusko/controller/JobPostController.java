@@ -23,6 +23,7 @@ import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 
 @RestController
 @Tag(name = "JobPostController", description = "to handle incoming requests for job posts")
@@ -63,7 +64,7 @@ public class JobPostController {
 	// controller method to add a job Post
 	@PostMapping("/addAJobPostById/{postId}")
 	@Operation(summary = "To add a job post")
-	public ResponseEntity<JobPost> addAJobPost(@RequestBody JobPost post) {
+	public ResponseEntity<JobPost> addAJobPost(@Valid @RequestBody JobPost post) {
 		return new ResponseEntity<JobPost>(jobPostService.addNewJobPost(post), HttpStatus.CREATED);
 
 	}
