@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.telusko.exception.JobPostIdNotFoundException;
 import com.telusko.model.JobPost;
+import com.telusko.repo.SearchJobPostRepoImpl;
 import com.telusko.service.JobPostService;
 
 import io.swagger.v3.oas.annotations.Hidden;
@@ -39,7 +40,16 @@ public class JobPostController {
 	@Autowired
 	private JobPostService jobPostService;
 
-	//
+	// injecting SearchBlogPostRepoImpl class object which will return list of
+	// searched posts
+	@Autowired
+	private SearchJobPostRepoImpl searchJobPostRepoImpl;
+
+	@GetMapping("/findJobPosts/{query}")
+	public List<JobPost> postSearch(@PathVariable String query) {
+		return searchJobPostRepoImpl.searchJobPostsByText(query);
+
+	}
 
 	// controller method to get all job posts
 	@Operation(summary = "To get all job posts")
