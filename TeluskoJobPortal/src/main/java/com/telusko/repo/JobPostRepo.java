@@ -1,9 +1,14 @@
 package com.telusko.repo;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
+import java.util.ArrayList;
+import java.util.Optional;
 
 import com.telusko.model.JobPost;
 
-public interface JobPostRepo extends MongoRepository<JobPost, Integer> {
+public interface JobPostRepo {
 
+	public ArrayList<JobPost> findAll();
+	 public  Optional<JobPost> findById(int postId);
+	 public String deleteById(int postId) ;
+	 public  JobPost save(JobPost post);
 }

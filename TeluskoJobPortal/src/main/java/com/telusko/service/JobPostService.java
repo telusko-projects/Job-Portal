@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.telusko.exception.JobPostIdNotFoundException;
 import com.telusko.model.JobPost;
-import com.telusko.repo.JobPostRepo;
+import com.telusko.repo.JobPostRepoImpl;
 
 @Service
 public class JobPostService {
@@ -16,7 +16,7 @@ public class JobPostService {
 	
 	//injecting object of JobPostRepo Interface(Proxy class:object at runtime)
 	@Autowired
-	private JobPostRepo jobPostRepo;
+	private JobPostRepoImpl jobPostRepo;
 
 	
 	

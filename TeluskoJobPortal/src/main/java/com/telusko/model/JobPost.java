@@ -1,8 +1,5 @@
 package com.telusko.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
@@ -15,10 +12,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "jobpost")
+//@Document(collection = "jobpost")
 public class JobPost {
 
-	@Id
+	//@Id
 	private int postId;
 
 	@NotEmpty(message = "Please write valid profile details for post")
