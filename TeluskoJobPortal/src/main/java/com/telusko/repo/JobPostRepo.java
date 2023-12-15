@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 import com.telusko.exception.JobPostIdNotFoundException;
+import com.telusko.exception.QueryNotFoundException;
 import com.telusko.model.JobPost;
 
 public interface JobPostRepo {

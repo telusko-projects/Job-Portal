@@ -1,6 +1,5 @@
 package com.telusko.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,33 +19,81 @@ import com.telusko.repo.SearchJobPostRepoImpl;
 import com.telusko.service.JobPostService;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 @RestController
-//@Tag(name = "JobPostController", description = "to handle incoming requests for job posts")
+@Tag(name = "JobPostController", description = "to handle incoming requests for job posts")
 public class JobPostController {
 
+	
+	
+	
+	
+	//********************************************************************************	
+	
+	
+	
+	
 //	@RequestMapping(value = "/")
 //	@Hidden
 //	public void redirect(HttpServletResponse response) throws IOException {
 //		response.sendRedirect("/swagger-ui/index.html");
 //	}
 
+	
+	
+	
+	
+	//********************************************************************************	
+	
+	
+	
+	
 	// injecting JobPostService object to use its methods
 	@Autowired
 	private JobPostService jobPostService;
 
+	
+	
+	
+//********************************************************************************
+	
+	
+	
+	
 	// injecting SearchBlogPostRepoImpl class object which will return list of
 	// searched posts
 	@Autowired
 	private SearchJobPostRepoImpl searchJobPostRepoImpl;
 
+	
+	
+	
+	
+	//********************************************************************************
+	
+	
+	
+	
+	
 	@GetMapping("/findJobPosts/{query}")
 	public ResponseEntity<List<JobPost>> postSearch(@PathVariable String query) {
 		return new ResponseEntity<List<JobPost>>(jobPostService.searchedKeywordJobPosts(query),HttpStatus.OK) ;
 
 	}
-
+	
+	
+	
+	
+	
+	//********************************************************************************
+	
+	
+	
+	
+	
+	
 	// controller method to get all job posts
 	@Operation(summary = "To get all job posts")
 	@GetMapping("/getAllJobPosts")
@@ -54,9 +101,16 @@ public class JobPostController {
 		return new ResponseEntity<List<JobPost>>(jobPostService.getAllPosts(), HttpStatus.OK);
 
 	}
+	
+	
+	
 
 	// ******************************************************************
 
+	
+	
+	
+	
 	// controller method to get a single job post by Id
 	@GetMapping("/getAJobPostById/{postId}")
 	@Operation(summary = "To get job post by id")
@@ -65,8 +119,17 @@ public class JobPostController {
 
 	}
 
+	
+	
+	
+	
 	// ******************************************************************
 
+	
+	
+	
+	
+	
 	// controller method to add a job Post
 	@PostMapping("/addAJobPostById")
 	@Operation(summary = "To add a job post")
@@ -75,8 +138,16 @@ public class JobPostController {
 
 	}
 
+	
+	
+	
+	
 	// ******************************************************************
 
+	
+	
+	
+	
 	// controller method to delete a job post
 	@DeleteMapping("/deleteAJobPostById/{postId}")
 	@Operation(summary = "To delete all job post by id")
@@ -85,8 +156,16 @@ public class JobPostController {
 
 	}
 
+	
+	
+	
+	
 	// ******************************************************************
 
+	
+	
+	
+	
 	// controller method to update a jobPost
 	@PutMapping("/updateAJobPostById/{postId}")
 	@Operation(summary = "To update job post by id")
