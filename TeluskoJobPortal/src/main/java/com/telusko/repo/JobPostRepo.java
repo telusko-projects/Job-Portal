@@ -1,7 +1,6 @@
 package com.telusko.repo;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 import com.telusko.exception.JobPostIdNotFoundException;
 import com.telusko.exception.QueryNotFoundException;
@@ -13,5 +12,5 @@ public interface JobPostRepo {
 	 public  JobPost findById(int postId) throws JobPostIdNotFoundException;
 	 public String deleteById(int postId) throws JobPostIdNotFoundException ;
 	 public  JobPost save(JobPost post);
-	 public ArrayList<JobPost> searchByString(String query);
+	 public ArrayList<JobPost> searchByString(String query) throws QueryNotFoundException;
 }

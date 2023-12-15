@@ -1,5 +1,6 @@
 package com.telusko.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,15 +12,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.telusko.exception.JobPostIdNotFoundException;
+import com.telusko.exception.QueryNotFoundException;
 import com.telusko.model.JobPost;
 import com.telusko.repo.SearchJobPostRepoImpl;
 import com.telusko.service.JobPostService;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 
 @RestController
@@ -34,12 +39,12 @@ public class JobPostController {
 	
 	
 	
-	
-//	@RequestMapping(value = "/")
-//	@Hidden
-//	public void redirect(HttpServletResponse response) throws IOException {
-//		response.sendRedirect("/swagger-ui/index.html");
-//	}
+	//controller method to redirect the index page to swagger ui page
+	@RequestMapping(value = "/")
+	@Hidden
+	public void redirect(HttpServletResponse response) throws IOException {
+		response.sendRedirect("/swagger-ui/index.html");
+	}
 
 	
 	
@@ -76,9 +81,9 @@ public class JobPostController {
 	
 	
 	
-	
+	// controller method to find a job post using query String
 	@GetMapping("/findJobPosts/{query}")
-	public ResponseEntity<List<JobPost>> postSearch(@PathVariable String query) {
+	public ResponseEntity<List<JobPost>> postSearch(@PathVariable String query) throws QueryNotFoundException {
 		return new ResponseEntity<List<JobPost>>(jobPostService.searchedKeywordJobPosts(query),HttpStatus.OK) ;
 
 	}

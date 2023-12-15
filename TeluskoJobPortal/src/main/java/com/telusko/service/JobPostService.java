@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.telusko.exception.JobPostIdNotFoundException;
+import com.telusko.exception.QueryNotFoundException;
 import com.telusko.model.JobPost;
 import com.telusko.repo.JobPostRepoImpl;
 
@@ -17,21 +18,41 @@ public class JobPostService {
 	@Autowired
 	private JobPostRepoImpl jobPostRepo;
 
+	
+	
+	
 	// *******************************************************************
 
+	
+	
+	
 	// to get all job posts
 	public List<JobPost> getAllPosts() {
 		return jobPostRepo.findAll();
 	}
 
+	
+	
+	
+	
 	// *****************************************
 
-	public ArrayList<JobPost> searchedKeywordJobPosts(String query) {
+	
+	
+	
+	
+	public ArrayList<JobPost> searchedKeywordJobPosts(String query) throws QueryNotFoundException {
 		return jobPostRepo.searchByString(query);
 	}
 
+	
+	
+	
 	// *******************************************************************
 
+	
+	
+	
 	// to get a single job post
 	public JobPost getJobPostById(int postId) throws JobPostIdNotFoundException {
 		JobPost jPost = jobPostRepo.findById(postId);
@@ -42,8 +63,16 @@ public class JobPostService {
 		}
 	}
 
+	
+	
+	
+	
 	// *******************************************************************
 
+	
+	
+	
+	
 	// to delete a job post with given id
 	public String deleteJobPostById(int postId) throws JobPostIdNotFoundException {
 		JobPost jPost = jobPostRepo.findById(postId);
@@ -56,8 +85,17 @@ public class JobPostService {
 		}
 	}
 
+	
+	
+	
+	
 	// *******************************************************************
 
+	
+	
+	
+	
+	
 	// to update a job post with given id
 	public JobPost updateJobPost(int postId, JobPost newJobPost) throws JobPostIdNotFoundException {
 		JobPost existingJobPost = jobPostRepo.findById(postId);
@@ -78,6 +116,12 @@ public class JobPostService {
 		}
 	}
 
+	
+	
+	
+	
+	
+	
 	// *******************************************************************
 
 	// to add a new job post
