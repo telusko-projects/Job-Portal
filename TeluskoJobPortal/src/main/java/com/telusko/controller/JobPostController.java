@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.telusko.exception.JobPostIdNotFoundException;
 import com.telusko.exception.QueryNotFoundException;
 import com.telusko.model.JobPost;
-import com.telusko.repo.SearchJobPostRepoImpl;
 import com.telusko.service.JobPostService;
 
 import io.swagger.v3.oas.annotations.Hidden;
@@ -28,6 +28,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 
 @RestController
+
 @Tag(name = "JobPostController", description = "to handle incoming requests for job posts")
 public class JobPostController {
 
@@ -40,6 +41,7 @@ public class JobPostController {
 	
 	
 	//controller method to redirect the index page to swagger ui page
+	
 	@RequestMapping(value = "/")
 	@Hidden
 	public void redirect(HttpServletResponse response) throws IOException {
@@ -67,10 +69,7 @@ public class JobPostController {
 	
 	
 	
-	// injecting SearchBlogPostRepoImpl class object which will return list of
-	// searched posts
-	@Autowired
-	private SearchJobPostRepoImpl searchJobPostRepoImpl;
+
 
 	
 	
@@ -82,6 +81,7 @@ public class JobPostController {
 	
 	
 	// controller method to find a job post using query String
+
 	@GetMapping("/findJobPosts/{query}")
 	public ResponseEntity<List<JobPost>> postSearch(@PathVariable String query) throws QueryNotFoundException {
 		return new ResponseEntity<List<JobPost>>(jobPostService.searchedKeywordJobPosts(query),HttpStatus.OK) ;
@@ -100,6 +100,7 @@ public class JobPostController {
 	
 	
 	// controller method to get all job posts
+
 	@Operation(summary = "To get all job posts")
 	@GetMapping("/getAllJobPosts")
 	public ResponseEntity<List<JobPost>> getAllPosts() {
@@ -117,6 +118,7 @@ public class JobPostController {
 	
 	
 	// controller method to get a single job post by Id
+
 	@GetMapping("/getAJobPostById/{postId}")
 	@Operation(summary = "To get job post by id")
 	public ResponseEntity<JobPost> getJobPostById(@PathVariable int postId) throws JobPostIdNotFoundException {
@@ -136,6 +138,7 @@ public class JobPostController {
 	
 	
 	// controller method to add a job Post
+
 	@PostMapping("/addAJobPostById")
 	@Operation(summary = "To add a job post")
 	public ResponseEntity<JobPost> addAJobPost(@Valid @RequestBody JobPost post) {
@@ -154,6 +157,7 @@ public class JobPostController {
 	
 	
 	// controller method to delete a job post
+
 	@DeleteMapping("/deleteAJobPostById/{postId}")
 	@Operation(summary = "To delete all job post by id")
 	public ResponseEntity<String> deleteJobPost(@PathVariable int postId) throws JobPostIdNotFoundException {
@@ -172,6 +176,7 @@ public class JobPostController {
 	
 	
 	// controller method to update a jobPost
+	
 	@PutMapping("/updateAJobPostById/{postId}")
 	@Operation(summary = "To update job post by id")
 	public ResponseEntity<JobPost> updateJobPostById(@PathVariable int postId, @RequestBody JobPost post)
