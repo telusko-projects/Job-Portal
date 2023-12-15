@@ -35,5 +35,8 @@ public class JobPost {
 	
 	@NotEmpty(message = "please provide at least one tech stack")
 	private String postTechStack[];
+	
+	@NotEmpty(message = "please at lest provide one keyword to search this post")
+	private String keyWords[];
 
 }

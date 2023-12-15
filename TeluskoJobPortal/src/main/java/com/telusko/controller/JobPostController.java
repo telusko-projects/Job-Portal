@@ -1,6 +1,6 @@
 package com.telusko.controller;
 
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.telusko.exception.JobPostIdNotFoundException;
@@ -20,21 +19,18 @@ import com.telusko.model.JobPost;
 import com.telusko.repo.SearchJobPostRepoImpl;
 import com.telusko.service.JobPostService;
 
-import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 
 @RestController
-@Tag(name = "JobPostController", description = "to handle incoming requests for job posts")
+//@Tag(name = "JobPostController", description = "to handle incoming requests for job posts")
 public class JobPostController {
 
-	@RequestMapping(value = "/")
-	@Hidden
-	public void redirect(HttpServletResponse response) throws IOException {
-		response.sendRedirect("/swagger-ui/index.html");
-	}
+//	@RequestMapping(value = "/")
+//	@Hidden
+//	public void redirect(HttpServletResponse response) throws IOException {
+//		response.sendRedirect("/swagger-ui/index.html");
+//	}
 
 	// injecting JobPostService object to use its methods
 	@Autowired
@@ -46,8 +42,8 @@ public class JobPostController {
 	private SearchJobPostRepoImpl searchJobPostRepoImpl;
 
 	@GetMapping("/findJobPosts/{query}")
-	public List<JobPost> postSearch(@PathVariable String query) {
-		return searchJobPostRepoImpl.searchJobPostsByText(query);
+	public ResponseEntity<List<JobPost>> postSearch(@PathVariable String query) {
+		return new ResponseEntity<List<JobPost>>(jobPostService.searchedKeywordJobPosts(query),HttpStatus.OK) ;
 
 	}
 
@@ -72,7 +68,7 @@ public class JobPostController {
 	// ******************************************************************
 
 	// controller method to add a job Post
-	@PostMapping("/addAJobPostById/{postId}")
+	@PostMapping("/addAJobPostById")
 	@Operation(summary = "To add a job post")
 	public ResponseEntity<JobPost> addAJobPost(@Valid @RequestBody JobPost post) {
 		return new ResponseEntity<JobPost>(jobPostService.addNewJobPost(post), HttpStatus.CREATED);
@@ -98,4 +94,7 @@ public class JobPostController {
 			throws JobPostIdNotFoundException {
 		return new ResponseEntity<JobPost>(jobPostService.updateJobPost(postId, post), HttpStatus.CREATED);
 	}
+	
+	
+	
 }
