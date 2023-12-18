@@ -8,11 +8,17 @@ import com.telusko.exception.JobPostIdNotFoundException;
 import com.telusko.exception.QueryNotFoundException;
 import com.telusko.model.JobPost;
 
+import lombok.Data;
+
 @Repository
+
 public class JobPostRepoImpl implements JobPostRepo {
 
 	ArrayList<JobPost> saveJobPosts = new ArrayList<>();
-
+	
+	
+	
+	
 	//*************************************************************************************
 	
 	
