@@ -1,6 +1,8 @@
 package com.telusko.main.model;
 
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import lombok.AllArgsConstructor;
@@ -18,7 +20,7 @@ public class JobPost {
 	private String postProfile; 
 	private String postDesc;
 	private Integer reqExperience;
-	private String postTechStack[];
+	private List<String> postTechStack;
 	
 
 }
